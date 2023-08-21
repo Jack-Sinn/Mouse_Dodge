@@ -1,4 +1,4 @@
-import {canvas,ctx,mosPos} from './start.js'
+import {canvas,ctx,canvasst,ctxst,mosPos} from './start.js'
 import {boxen, playercircle} from './gamepieces.js'
 
 
@@ -19,27 +19,46 @@ function randomY(){
 }
 //initialize
 let boxes = [];
-boxes[0] = new boxen(randomX(),randomY())
+boxes[0] = new boxen(randomX(),randomY());
+setInterval(boxes.push(new boxen(randomX(),randomY())),5000);
+setInterval(boxes.push(new boxen(randomX(),randomY())),10000);
+
 const player = new playercircle(mosPos.x,mosPos.y);
 //gameloop
 
 //gameloop drawing and everything on the screen
 function gameloop(){
+    //canvasst
+    ctxst.fillStyle = "black";
+    ctxst.fillRect(0,0,board.width,board.height);
     //boxes
-    boxes[0].draw(ctx);
-    boxes[0].moveexact(mosPos.x,mosPos.y,30);
+    for(let i=0;i<boxes.length;i++){
+    boxes[i].draw(ctx);
+    boxes[i].moveexact(mosPos.x,mosPos.y,20);
+    boxes[i].dodamage(player);
+    }
     //circle
     player.draw(ctx);
-    /*
-    ctx.beginPath();
-    ctx.arc(mosPos.x,mosPos.y,16,0,2*Math.PI,true);
-    ctx.lineWidth=1;
-    ctx.strokeStyle = 'red';
-    ctx.stroke();
-    ctx.closePath();*/
-    requestAnimationFrame(gameloop)
-
-
+    //hud
+    ctxst.beginPath();
+    ctxst.arc(canvasst.width/3.5,canvasst.height/2,100,0,2*Math.PI,true);
+    ctxst.lineWidth=10;
+    ctxst.strokeStyle = 'darkgrey';
+    ctxst.stroke();
+    ctxst.closePath();
+    ctxst.beginPath();
+    ctxst.arc(canvasst.width/3.5,canvasst.height/2,100,0,((6.2832)*(player.hp/1000)),false); //10/player.hp
+    ctxst.lineWidth=8;
+    ctxst.strokeStyle = 'green';
+    ctxst.stroke();
+    ctxst.closePath();
+    //text
+    ctxst.font="3em Arial";
+    ctxst.textAlign="center";
+    ctxst.fillStyle='darkgrey';
+    ctxst.fillText("HP",canvasst.width/3.5,canvasst.height/1.8)
+    //repeat
+    requestAnimationFrame(gameloop);
 }
 gameloop();
 

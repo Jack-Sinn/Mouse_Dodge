@@ -12,8 +12,14 @@ gamestartseq.type='module';
 export const htmlbody = document.body;
 export const canvas = document.getElementById('board');
 export const ctx = canvas.getContext('2d');
+export const canvasst = document.getElementById('status')
+export const ctxst = canvasst.getContext('2d');
 canvas.width = window.innerWidth*.9;
 canvas.height = window.innerHeight*.7;
+canvas.style.marginTop = "1vh";
+canvasst.width = window.innerWidth*.4;
+canvasst.height = window.innerHeight*.20;
+canvasst.style.marginTop = "1vh";
 export const mosPos= {x:board.width/2,y:board.height/2,}
 export const startdiv = document.getElementById('start');
 
@@ -37,7 +43,3 @@ canvas.addEventListener('mousemove',(event)=>{ //bounding needed for mouse track
     mosPos.y= Math.round(event.clientY - rect.top-38);
     ctx.font="2vw Arial";
 }) 
-/* For initiating game - Remember to remove menu elements before appending
-div.remove()
-htmlbody.appendChild(gamescript);
-*/
