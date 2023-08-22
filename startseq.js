@@ -1,4 +1,4 @@
-import {canvas,ctx,mosPos,startdiv,gamescript} from './start.js';
+import {canvas,ctx,mosPos,startdiv,gamescript,sounds} from './start.js';
 var centerstart = false;
 var countdown = 300;
 

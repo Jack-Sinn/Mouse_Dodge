@@ -1,4 +1,4 @@
-import {canvas,ctx,mosPos} from './start.js'
+import {canvas,ctx,mosPos,soundlib} from './start.js'
 //box enemies
 export class boxen {
     constructor(startx,starty,type){
@@ -15,7 +15,8 @@ export class boxen {
         this.horspd = 0;
         this.verspd = 0;
         this.move=this.moveslide;
-        if(type==0 || type==4){this.color="green";this.move=this.moveslide; this.speed=40;}
+        this.sound="";
+        if(type==0 || type==4){this.color="green";this.move=this.moveslide; this.speed=40;this.sound=}
         if(type==1){this.color="blue";this.move=this.moveexact; this.speed=25;}
         if(type==2){this.color="rgb(6,6,6)";this.speed=20;this.damage=3}
         if(type==3){this.color="yellow"; this.move=this.moveeratic;this.speed=40;this.damage=1}

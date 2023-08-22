@@ -1,4 +1,4 @@
-import {canvas,ctx,canvasst,ctxst,mosPos} from './start.js'
+import {canvas,ctx,canvasst,ctxst,mosPos, sounds} from './start.js'
 import {boxen, playercircle} from './gamepieces.js'
 let restartbtn = document.getElementById('restartbtn');
 restartbtn.addEventListener("click",gamerestart)
