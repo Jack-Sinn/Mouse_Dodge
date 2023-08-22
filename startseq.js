@@ -1,6 +1,7 @@
-import {canvas,ctx,mosPos,startdiv,gamescript,sounds} from './start.js';
+import {canvas,ctx,mosPos,startdiv,gamescript,soundlibc} from './start.js';
 var centerstart = false;
-var countdown = 300;
+var countdown = 300
+const sound = new Audio(soundlibc.sounds.load);
 
 function startloop(){
     ctx.beginPath();
@@ -22,7 +23,7 @@ function startloop(){
 }
 function mosstartproximity(){
     if ((mosPos.x > (canvas.width/2)-64 )&& (mosPos.x < (canvas.width/2)+64) && (mosPos.y > (canvas.height/2)-64 )&& (mosPos.y < (canvas.height/2)+64)){
-        centerstart=true;countdown--}else{centerstart=false;countdown=300}
+        centerstart=true;countdown--; if(countdown<291){sound.play();}}else{centerstart=false;countdown=300;sound.pause();sound.load();}
     if (countdown<=0){
         window.removeEventListener('mousemove',mosstartproximity);
         document.body.appendChild(gamescript);

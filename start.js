@@ -9,7 +9,7 @@ gamepieces.type='module';
 export const gamestartseq = document.createElement('script');
 gamestartseq.src='./startseq.js';
 gamestartseq.type='module';
-export class soundlib{
+class soundlib{
     constructor(){
     this.sounds = {
         bee:'../Resources/bee.mp3',
@@ -17,10 +17,12 @@ export class soundlib{
         gameend:'../Resources/gameend.mp3',
         knife:'../Resources/knife.mp3',
         load:'../Resources/loadin.mp3',
-        squish:'../Resources/bee.mp3'};
+        squish:'../Resources/squish.mp3'};
     }
     load(sound){let wav = new Audio(sound);}
 }
+
+export const soundlibc = new soundlib;
 //html element refrences
 export const htmlbody = document.body;
 export const canvas = document.getElementById('board');

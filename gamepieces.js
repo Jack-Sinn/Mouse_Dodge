@@ -1,4 +1,4 @@
-import {canvas,ctx,mosPos,soundlib} from './start.js'
+import {canvas,ctx,mosPos,soundlibc} from './start.js'
 //box enemies
 export class boxen {
     constructor(startx,starty,type){
@@ -15,11 +15,11 @@ export class boxen {
         this.horspd = 0;
         this.verspd = 0;
         this.move=this.moveslide;
-        this.sound="";
-        if(type==0 || type==4){this.color="green";this.move=this.moveslide; this.speed=40;this.sound=}
-        if(type==1){this.color="blue";this.move=this.moveexact; this.speed=25;}
-        if(type==2){this.color="rgb(6,6,6)";this.speed=20;this.damage=3}
-        if(type==3){this.color="yellow"; this.move=this.moveeratic;this.speed=40;this.damage=1}
+        this.sound = new Audio(soundlibc.sounds.squish);
+        if(type==0 || type==4){this.color="green";this.move=this.moveslide; this.speed=40;this.sound= new Audio(soundlibc.sounds.squish)}
+        if(type==1){this.color="blue";this.move=this.moveexact; this.speed=25;this.sound= new Audio(soundlibc.sounds.bot);this.sound.volume=.1;}
+        if(type==2){this.color="rgb(6,6,6)";this.speed=20;this.damage=3;this.sound= new Audio(soundlibc.sounds.knife)}
+        if(type==3){this.color="yellow"; this.move=this.moveeratic;this.speed=40;this.damage=1;this.sound= new Audio(soundlibc.sounds.bee)}
 
     }
     draw(ctx){
@@ -77,7 +77,10 @@ export class boxen {
         if (targety<this.y){this.y-=Math.round((Math.random()*100)+10);}
     }
     dodamage(other){
-        if ((Math.abs(this.x-other.x)) < 36  &&  Math.abs(this.y-other.y) < 36){other.hp -= this.damage; console.log(other.hp)}
+        if ((Math.abs(this.x-other.x)) < 36  &&  Math.abs(this.y-other.y) < 36){other.hp -= this.damage; console.log(other.hp);
+             this.sound.play();
+            }/*else{this.sound.pause();
+                  this.sound.load();}*/
     }
     
     
