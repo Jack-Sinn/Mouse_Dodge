@@ -10,7 +10,7 @@ export class boxen {
         this.damage=1;
         this.pathing="";
         this.color="green";
-        this.speed=20;
+        this.speed=30;
         this.maxspeed=20;
         this.horspd = 0;
         this.verspd = 0;
@@ -27,15 +27,21 @@ export class boxen {
         if (targety<this.y){this.y-=1;}}
     }
     moveslide(targetx,targety){
+        //acceleration
         if (targetx>this.x){this.horspd+=1;}
         if (targetx<this.x){this.horspd-=1;}
         if (targety>this.y){this.verspd+=1;}
         if (targety<this.y){this.verspd-=1;}
-
-        if (this.horspd>this.maxspeed){this.horspd=this.maxspeed;}
-        if (this.horspd<this.maxspeed*-1){this.horspd=this.maxspeed*-1;}
-        if (this.verspd>this.maxspeed){this.verspd=this.maxspeed;}
-        if (this.verspd<this.maxspeed*-1){this.verspd=this.maxspeed*-1;}
+        //speed cap
+        if (this.horspd>this.speed){this.horspd=this.speed;}
+        if (this.horspd<this.speed*-1){this.horspd=this.speed*-1;}
+        if (this.verspd>this.speed){this.verspd=this.speed;}
+        if (this.verspd<this.speed*-1){this.verspd=this.speed*-1;}
+        //friction
+        if (this.horspd>0){this.horspd-=.2}
+        if (this.horspd<0){this.horspd+=.2}
+        if (this.verspd>0){this.verspd-=.2}
+        if (this.verspd<0){this.verspd+=.2}
         this.x+=this.horspd;
         this.y+=this.verspd;
     }
