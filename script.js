@@ -34,7 +34,7 @@ function gameloop(){
     //boxes
     for(let i=0;i<boxes.length;i++){
     boxes[i].draw(ctx);
-    boxes[i].moveexact(mosPos.x,mosPos.y,20);
+    boxes[i].moveslide(mosPos.x,mosPos.y,20);
     boxes[i].dodamage(player);
     }
     //circle

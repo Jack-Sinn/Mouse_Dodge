@@ -11,7 +11,9 @@ export class boxen {
         this.pathing="";
         this.color="green";
         this.speed=20;
-        this.accel=0;
+        this.maxspeed=20;
+        this.horspd = 0;
+        this.verspd = 0;
     }
     draw(ctx){
         ctx.fillStyle=this.color;
@@ -23,6 +25,19 @@ export class boxen {
         if (targetx<this.x){this.x-=1;}
         if (targety>this.y){this.y+=1;}
         if (targety<this.y){this.y-=1;}}
+    }
+    moveslide(targetx,targety){
+        if (targetx>this.x){this.horspd+=1;}
+        if (targetx<this.x){this.horspd-=1;}
+        if (targety>this.y){this.verspd+=1;}
+        if (targety<this.y){this.verspd-=1;}
+
+        if (this.horspd>this.maxspeed){this.horspd=this.maxspeed;}
+        if (this.horspd<this.maxspeed*-1){this.horspd=this.maxspeed*-1;}
+        if (this.verspd>this.maxspeed){this.verspd=this.maxspeed;}
+        if (this.verspd<this.maxspeed*-1){this.verspd=this.maxspeed*-1;}
+        this.x+=this.horspd;
+        this.y+=this.verspd;
     }
     dodamage(other){
         if ((Math.abs(this.x-other.x)) < 36  &&  Math.abs(this.y-other.y) < 36){other.hp -= this.damage; console.log(other.hp)}
