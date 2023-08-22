@@ -1,3 +1,4 @@
+//import { gameend } from "./script";
 //import scripts
 export const gamescript = document.createElement('script');
 gamescript.src='./script.js';
@@ -24,6 +25,7 @@ export const mosPos= {x:board.width/2,y:board.height/2,}
 export const startdiv = document.getElementById('start');
 
 
+
 //attach gamestart mechanism
 startdiv.appendChild(gamestartseq);
 
@@ -39,7 +41,9 @@ gamestart();
 window.addEventListener('resize',()=> {canvas.width = window.innerWidth*.9; canvas.height = window.innerHeight*.7;})
 canvas.addEventListener('mousemove',(event)=>{ //bounding needed for mouse tracking in canvas as the canvas will change size during game play 
     const rect = canvas.getBoundingClientRect();
+    //if (gameend == 0){
     mosPos.x= Math.round(event.clientX - rect.left-42);
     mosPos.y= Math.round(event.clientY - rect.top-38);
+//}
     ctx.font="2vw Arial";
 }) 

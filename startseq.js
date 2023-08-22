@@ -1,6 +1,6 @@
 import {canvas,ctx,mosPos,startdiv,gamescript} from './start.js';
 var centerstart = false;
-var countdown = 1;
+var countdown = 300;
 
 function startloop(){
     ctx.beginPath();
@@ -22,7 +22,7 @@ function startloop(){
 }
 function mosstartproximity(){
     if ((mosPos.x > (canvas.width/2)-64 )&& (mosPos.x < (canvas.width/2)+64) && (mosPos.y > (canvas.height/2)-64 )&& (mosPos.y < (canvas.height/2)+64)){
-        centerstart=true;countdown--}else{centerstart=false;countdown=1}
+        centerstart=true;countdown--}else{centerstart=false;countdown=300}
     if (countdown<=0){
         window.removeEventListener('mousemove',mosstartproximity);
         document.body.appendChild(gamescript);

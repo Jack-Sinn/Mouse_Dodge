@@ -8,11 +8,22 @@ body {
     margin: 0;
     height: 100vh;
     background: linear-gradient(0deg, red, blue);
+    min-width: 1920px;
+    min-height: 1080px;
   }
 #start{
     width: 0;
     height: 0;
 
+}
+#restartbtn{
+  width: 300px;
+  height: 100px;
+  position: absolute;
+  top: 35vh;
+  display:none;
+  border-radius: 5px;
+  font-size: 3em;
 }
 #toptext{
 
