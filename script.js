@@ -1,7 +1,8 @@
-import {canvas,ctx,canvasst,ctxst,mosPos, soundlibc} from './start.js'
+import {canvas,ctx,canvasst,ctxst,mosPos,distancerun} from './start.js'
 import {boxen, playercircle} from './gamepieces.js'
 let restartbtn = document.getElementById('restartbtn');
 restartbtn.addEventListener("click",gamerestart)
+let startdis = distancerun;
 
 //
 function randomX(){
@@ -20,9 +21,10 @@ function randomY(){
 let boxes = [];
 boxes[0] = new boxen(randomX(),randomY());
 export let gameend=0;
-let gametimer = 0;
+export let gametimer = 0;
 let diftime = 5000;
 let genenemyInterval;
+let finaldistance=0;
 
 const player = new playercircle(mosPos.x,mosPos.y);
 //gameloop
@@ -66,11 +68,17 @@ function gameloop(){
     //repeat
     requestAnimationFrame(gameloop);
     //game end
-    if(player.hp<0){player.hp=0}
+    if(player.hp<=-1){player.hp=0;finaldistance = distancerun-startdis;gameend=1;}
     if(player.hp==0){
-        gameend=1;
+        
     }
-    if (gameend==1){restartbtn.style.display="block"}
+    if (gameend==1){restartbtn.style.display="block";
+    ctx.fillStyle='white';
+    ctx.fillText("Distance",canvas.width/2,canvas.height/1.6)
+    ctx.fillText(finaldistance,canvas.width/2,canvas.height/1.45)
+
+
+}
     if(gametimer==200){
         diftime = (1000+(Math.random()*4000));
         console.log(diftime)
@@ -103,7 +111,7 @@ function gameloop(){
 
 function genenemy(){
     if(gameend==0){
-    boxes.push(new boxen(randomX(),randomY(),Math.floor(Math.random()*4.99)))};
+    boxes.push(new boxen(randomX(),randomY(),Math.floor(Math.random()*5.99)))};
 }
 function genenedifplus(newtime){
     clearInterval(genenemyInterval);
