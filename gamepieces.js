@@ -18,15 +18,17 @@ export class boxen {
         this.sound = new Audio(soundlibc.sounds.squish);
         if(type==0 || type==4){this.color="green";this.move=this.moveslide; this.speed=40;this.sound=new Audio(soundlibc.sounds.squish)}
         if(type==1){this.color="blue";this.move=this.moveexact; this.speed=25;this.sound= new Audio(soundlibc.sounds.bot);this.sound.volume=.1;}
-        if(type==2){this.color="rgb(6,6,6)";this.speed=20;this.damage=3;this.sound= new Audio(soundlibc.sounds.knife)}
+        if(type==2){this.color="rgb(8,8,8)";this.speed=20;this.damage=3;this.sound= new Audio(soundlibc.sounds.knife)}
         if(type==3){this.color="yellow"; this.move=this.moveeratic;this.speed=40;this.damage=1;this.sound= new Audio(soundlibc.sounds.bee)}
         if(type==5){this.color="red"; this.move=this.movetele;this.speed=1;this.damage=1;this.sound= new Audio(soundlibc.sounds.knife)}
 
 
     }
     draw(ctx){
-        ctx.fillStyle=this.color;
-        ctx.fillRect(this.x+4,this.y+4,this.width,this.height)
+        ctx.fillStyle=this.color;ctx.shadowColor = this.color;
+        ctx.fillRect(this.x+4,this.y+4,this.width,this.height);
+        ctx.shadowBlur = 20;
+        ctx.linejoin = "bevel";
     }
     moveexact(targetx,targety){
         for(let i=0; i<this.speed;i++){
@@ -101,9 +103,15 @@ export class playercircle{
         this.y = mosPos.y;
         ctx.beginPath();
         ctx.arc(mosPos.x+20,mosPos.y+20,this.radius,0,2*Math.PI,true);
-        ctx.lineWidth=1;
+        ctx.fillStyle="white";
+        ctx.fill();
+        ctx.lineWidth=3;
         ctx.strokeStyle = 'red';
         ctx.stroke();
         ctx.closePath();
+        //glow
+        ctx.shadowColor = "red";
+        ctx.shadowBlur = 20;
+        
     }
 }
